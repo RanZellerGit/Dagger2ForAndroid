@@ -5,9 +5,10 @@ import android.os.Bundle
 import com.example.dagger2tutorial.DI.ApplicationComponent
 import com.example.dagger2tutorial.DI.ElectricEngineModule
 import com.example.dagger2tutorial.Models.Car
+import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var car1 : Car
 
@@ -17,11 +18,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val component = (application as Dagger2Tutorial).appComponent
-            .getActivityComponent(ElectricEngineModule(120))
-
-        component.inject(this)
 
         car1.engine.startEngine()
         car1.drive()

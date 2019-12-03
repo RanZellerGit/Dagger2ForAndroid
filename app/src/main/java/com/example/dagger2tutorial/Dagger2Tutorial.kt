@@ -1,17 +1,13 @@
 package com.example.dagger2tutorial
 
-import android.app.Application
-import com.example.dagger2tutorial.DI.ActivityComponent
-import com.example.dagger2tutorial.DI.ApplicationComponent
 import com.example.dagger2tutorial.DI.DaggerApplicationComponent
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 
-class Dagger2Tutorial : Application() {
+class Dagger2Tutorial : DaggerApplication() {
 
-    lateinit var appComponent : ApplicationComponent
-    override fun onCreate() {
-        super.onCreate()
-
-        appComponent = DaggerApplicationComponent.create()
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerApplicationComponent.builder().application(this).build()
     }
 
 

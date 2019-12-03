@@ -7,11 +7,11 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class ElectricEngineModule(val horsePower : Int) {
+class ElectricEngineModule {
 
     @Provides
     fun provideElectricEngine(engine: ElectricEngine) : Engine = engine
 
     @Provides
-    fun provideHorsePower() : Int = horsePower
+    fun provideHorsePower() : Int = 5
 }
